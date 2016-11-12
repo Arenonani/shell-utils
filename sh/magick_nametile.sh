@@ -19,12 +19,13 @@ COLOR="#990099"
 # TILING
 BGCOLOR="#cccccc"
 TILE="6x"
-OUT=$3
+PATTERN=${3:-.png}
+OUT=${4:-out.png}
 
 mkdir -p $DIR
 rm ${DIR}/*.png
 
-for FILE in `ls . | grep .png`; do
+for FILE in `ls . | grep "$PATTERN"`; do
 	IFS_ORIG="$IFS"
 	IFS="$SPLIT"
 	arr=(${FILE%.*})
