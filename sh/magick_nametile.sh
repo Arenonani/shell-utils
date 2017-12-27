@@ -32,7 +32,7 @@ for FILE in `ls . | grep "$PATTERN"`; do
 	IFS="$IFS_ORIG"
 	TEXT=${arr[$SELECT]}
 	echo "crop $FILE"
-  convert -crop ${WIDTH}x${HEIGHT}+${LEFT}+${TOP} -font $FONT -pointsize $SIZE -fill $COLOR -annotate +${ALEFT}+${ATOP} $TEXT $FILE ${DIR}/${FILE}
+  convert -crop ${WIDTH}x${HEIGHT}+${LEFT}+${TOP} -font "$FONT" -pointsize $SIZE -fill $COLOR -annotate +${ALEFT}+${ATOP} $TEXT $FILE ${DIR}/${FILE}
 done
 
 echo "generate ${OUT}"
