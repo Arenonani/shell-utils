@@ -12,7 +12,7 @@ SPLIT="_"
 SELECT=3
 ALEFT=$LEFT
 ATOP=`expr $TOP + $HEIGHT - 10`
-FONT="Osaka"
+FONT="/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc"
 SIZE=48
 COLOR="#990099"
 
