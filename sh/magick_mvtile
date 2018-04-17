@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# CROP
+DIR="/tmp/magick"
+LEFT=$1
+TOP=$2
+WIDTH=${3:-400}
+HEIGHT=${3:-400}
+TILEWIDTH=144
+TILEHEIGHT=144
+
+# TILING
+BGCOLOR="none"
+TILE="4x"
+PATTERN=${4:-.png}
+OUT=${5:-out%d.png}
+
+# FILTER
+UNSHARP=${6:-0x0.75+0.75+0.008}
+
+mkdir -p $DIR
+rm ${DIR}/*.png
+
+for FILE in `ls . | grep "$PATTERN"`; do
+    echo "crop $FILE"
+    convert -crop ${WIDTH}x${HEIGHT}+${LEFT}+${TOP} -resize ${TILEWIDTH}x${TILEHEIGHT} $FILE -unsharp ${UNSHARP} ${DIR}/${FILE}
+done
+
+echo "generate ${OUT}"
+montage -background ${BGCOLOR} -tile $TILE -geometry +0+0 ${DIR}/*.png ${OUT}
+
+rm -rf ${DIR}
